@@ -1,0 +1,49 @@
+<%- include('./partials/header.ejs'); %> <%-
+include('./partials/sideMenu.ejs');%>
+
+<style>
+  .upload_card {
+    background: rgba(180, 175, 175, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+  }
+</style>
+<div class="scrollable" id="data">
+  <h4 id="title" class="title">
+    <i class="fas fa-file-upload"></i> Upload your reports
+  </h4>
+  <br />
+  <br />
+  <form action="upload_reports" method="POST" enctype="multipart/form-data">
+    <div class="col-sm-6">
+      <div class="upload_card card">
+        <%- include('./partials/messages.ejs'); %>
+        <div class="card-body">
+          <div>
+            <label class="lead" style="font-size: 18px" for="title"
+              >Report Description</label
+            >
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Type report name or its description"
+              class="form-control"
+            />
+          </div>
+          <br />
+          <div>
+            <label for="image" style="font-size: 18px" class="lead"
+              >Image</label
+            >
+            <input type="file" name="image" id="image" class="form-control" />
+          </div>
+          <br />
+          <button id="upload_btn" type="submit" class="btn btn-success">
+            Upload Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

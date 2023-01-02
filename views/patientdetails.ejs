@@ -1,0 +1,76 @@
+<%- include('./partials/headerDr.ejs'); %>
+<%- include('./partials/sideMenuDr.ejs'); %>
+
+
+<style>
+  .scrollable {
+    height: 1000px;
+    /* or any value */
+    overflow-y: auto;
+  }
+
+  #profile-image {
+    border: 1px solid rgba(255, 255, 255, 0.247);
+    margin-left: 11030;
+    margin: 20px 20px;
+  }
+
+  #details {
+    background: rgba(44, 42, 42, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    float: left;
+  }
+  .list-group-item {
+    background: rgba(109, 103, 103, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    font-size: 16px;
+  }
+
+  .margin-bottom {
+    margin-bottom: 600px;
+  }
+</style>
+
+<body>
+  <div class="scrollable" id="data">
+    <h4 class="title" id="title"><i class="far fa-address-card"></i> Details of <%=patient.name%> </h4><br>
+
+    <!-- For details about patient -->
+
+    <div class="container"></div>
+    <div class="row col-12">
+      <div id="details" class="card col-md-5 ml-5">
+        <ul class="list-group list-group-flush">
+          <h5 class="sub_title" id="sub_title" style="color: aliceblue;">Basic Information</h5>
+          <div id="profile-image" class="col-md-4">
+            <img src="<%=patient.imageUrl%>" class="card-img"></img>
+          </div>
+          <li class="list-group-item hvr-grow-shadow" style="background-color: transparent;"><b style="font-size: 30px;"> <%=patient.name%></b></li>
+          <br>
+          <li class="list-group-item hvr-grow-shadow mb-2"><b>Id :</b> <%=patient.id%> </li>
+          <li class="list-group-item hvr-grow-shadow mb-2"><b>Patient ID:</b> <%=patient.tokennumber%> </li>
+          <li class="list-group-item hvr-grow-shadow mb-2"><b>Email :</b> <%=patient.email%></li>
+          <li class="list-group-item hvr-grow-shadow mb-2"><b>Gender :</b> <%=patient.gender%> </li>
+          <li class="list-group-item hvr-grow-shadow mb-2"><b>Age :</b> <%=patient.age%> </li>
+          <li class="list-group-item hvr-grow-shadow mb-2"><b>Address :</b> <%=patient.address%> </li>
+          <li class="list-group-item hvr-grow-shadow mb-2"><b>Joined :</b><%=patient.date.toDateString()%> </li>
+        </ul>
+      </div>
+      <div id="details" class="card col-md-4 ml-5 margin-bottom">
+        <ul class="list-group list-group-flush">
+          <h5 class="sub_title" id="sub_title" style="color: aliceblue;">Reports</h5>
+
+          <li class="list-group-item"><a
+              href="/viewpatientsD/<%=patient.id%>/patientUploadsD" class="btn btn-success btn-block">Patient
+              Uploads</a></li>
+          <li class="list-group-item"><a
+              href="/viewpatientsD/<%=patient.id%>/hospitalUploadsD" class="btn btn-success btn-block">Hospital
+              Uploads</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>

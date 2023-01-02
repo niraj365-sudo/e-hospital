@@ -1,0 +1,31 @@
+<%- include('./partials/header.ejs'); %>
+<%- include('./partials/sideMenu.ejs'); %>
+
+<style>
+    .feedback_card{
+        background: rgba(180, 175, 175, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    }
+    
+</style>
+<div class="scrollable" id ="data">
+    <h4 class="title"><i class="far fa-comments"></i> Send feedbacks</h4>
+    <br>
+    <br>
+    <form action="/feedbackform" method="POST" >
+        
+        <div class="col-sm-8">
+            <div class="feedback_card card">
+              <div class="card-body">
+                <div class="form-group">
+                    <label for="feedback-form-message" class="lead">Message</label>
+                    <textarea type="text" placeholder="Enter your message and hit send" name="message"  class="feedback_card form-control" id="feedback-form-message" rows="6"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Send</button>
+                <%- include('./partials/messages.ejs'); %>
+              </div>
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<%- include('./partials/header.ejs'); %> <%- include('./partials/sideMenu.ejs');
+%>
+
+
+<div class="scrollable" id="data">
+    <h4 class="title"><i class="fas fa-list"></i> Appointment List</h4>
+    <%- include('./partials/messages.ejs'); %>
+
+    <section id="appointments">
+      <hr>
+      <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : My Appointments </h4> 
+      <table id="datatable" class="table table-bordered table-dark">
+          <thead class="thead-dark">
+            <tr>
+              <th style="width: 25%;" scope="col">Doctor Name</th>
+              <th style="width: 30%;" scope="col">Doctor Speciality</th>
+              <th scope="col">Appointment Date</th>
+              <th scope="col">Appointment Time</th>
+              <th scope="col">Cancel Appointment</th>
+            </tr>
+          </thead>
+          <tbody id="tablebody">
+            <% appointments.forEach(Appointment => { %>
+            <tr>
+              <% if(Appointment.appointmentDate === 'To Be Confirmed'){ %>
+                <td scope="row" style="background-color: rgba(245, 66, 66, 0.200)"><a href="/patient/<%= Appointment.doctorID%>" style="color: white;"><%= Appointment.doctorName%></a></td>
+                <td style="background-color: rgba(245, 66, 66, 0.200)"><%= Appointment.doctorSpeciality%></td>
+                <td style="background-color: rgba(245, 66, 66, 0.200)">
+                  <b><%= Appointment.appointmentDate%></b>
+                </td>
+                <td style="background-color: rgba(245, 66, 66, 0.200)">
+                  <b><%= Appointment.appointmentTime%></b>
+                </td>
+                <% } else{ %>
+                  <td scope="row" style="background-color: rgba(66, 245, 111, 0.1)"><a href="/patient/<%= Appointment.doctorID%>" style="color: white;"><%= Appointment.doctorName%></a></td>
+                  <td style="background-color: rgba(66, 245, 111, 0.1)"><%= Appointment.doctorSpeciality%></td>
+                  <td style="background-color: rgba(66, 245, 111, 0.1)">
+                    <b><%= Appointment.appointmentDate%></b>
+                  </td>
+                  <td style="background-color: rgba(66, 245, 111, 0.1)">
+                    <b><%= Appointment.appointmentTime%></b>
+                  </td>
+                <% } %>
+              <td><a href="/cancelAppointment/<%=Appointment.id%>" id="btn_cancel" class="btn btn-danger">Cancel Appointment</button></td>
+              </td>
+            </tr>
+          </tbody>
+          <% }) %>
+        </table>
+    </section>
+
+    <section id="no_appointments">
+      <hr>
+        <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : My Appointments </h4> 
+        <div class="ml-2" style="width: 100%;">
+            <div id="null_alert" class="alert alert-dark" style="background-color: rgba(2, 231, 247, 0.048);" role="alert">
+                <h3 class="alert-heading"><i style="color: rgba(243, 231, 230, 0.651);" class="fas fa-exclamation-circle"></i> Oops..</h3>
+                <h6 style="font-weight: 200">No doctors appointed yet!<br><br><p>Click <a href="/patient/viewdoctors/" style="color: yellowgreen;">here</a> to appoint one</p></h6>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+  function isEmpty(check) {
+    return !$.trim(check.html())
+  }
+  if (isEmpty($('#tablebody'))) {
+    ($('#appointments').hide())
+  } else
+    ($('#no_appointments').hide())
+</script>

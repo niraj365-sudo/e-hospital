@@ -1,0 +1,98 @@
+<%- include('./partials/headerAdmin.ejs'); %>
+<%- include('./partials/sideMenuAdmin.ejs'); %>
+
+
+
+<style>
+  .scrollable {
+    height: 1000px;
+    /* or any value */
+    overflow-y: auto;
+  }
+
+  #profile-image {
+    border: 1px solid rgba(255, 255, 255, 0.247);
+    margin-left: 11030;
+    margin: 20px 20px;
+  }
+
+  #details {
+    background: rgba(44, 42, 42, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    float: left;
+  }
+
+  .list-group-item {
+    background: rgba(109, 103, 103, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    font-size: 16px;
+  }
+  .margin-bottom {
+    height: 300px;
+  }
+</style>
+
+<body>
+  <div class="scrollable" id="data">
+    <h4 class="title" id="title"><i class="far fa-address-card"></i> Details of <%=(doctor.salutation)+" "+ (doctor.name)%></h4><br>
+
+    <!-- For details about doctor-->
+
+    <div class="row col-12">
+      <div id="details" class="card col-md-5 ml-5">
+        <ul class="list-group list-group-flush">
+          <h5 class="sub_title" id="sub_title" style="color: aliceblue;">Basic Information</h5>
+          <div id="profile-image" class="col-md-4">
+            <img src="<%=doctor.imageUrl%>" class="card-img"></img>
+          </div>
+          <li class="list-group-item hvr-grow-shadow" style="background-color: transparent;">
+            <b style="font-size: 28px;"><%=(doctor.salutation)+" "+ (doctor.name)%></b>
+            <h6 style="font-weight: 100; color: turquoise;"> <%=doctor.speciality%></h6>
+          </li>
+          <br>
+          <li class="list-group-item mb-2 hvr-grow-shadow"><b>Email :</b> <%=doctor.email%></li>
+          <li class="list-group-item mb-2 hvr-grow-shadow"><b>Email :</b> <%=doctor.phonenumber%></li>
+          <li class="list-group-item mb-2 hvr-grow-shadow"><b>Gender :</b> <%=doctor.gender%> </li>
+          <li class="list-group-item mb-2 hvr-grow-shadow"><b>Speciality:</b> <%=doctor.speciality%> </li>
+          <li class="list-group-item mb-2 hvr-grow-shadow"><b>Qualification :</b> <%=doctor.qualification%> </li>
+          <li class="list-group-item mb-2 hvr-grow-shadow"><b>Experience :</b> <%=doctor.experience%> </li>
+          <li class="list-group-item mb-2 hvr-grow-shadow"><b>Description :</b> <%=doctor.description%> </li>
+        </ul>
+      </div>
+      <div id="details" class="card col-md-4 ml-5 margin-bottom">
+        <ul class="list-group list-group-flush">
+          <h5 class="sub_title" id="sub_title" style="color: aliceblue;">Available time</h5>
+
+          <li class="list-group-item hvr-grow-shadow"><b>Days:</b>
+            <% if (availability) { %>
+            <h6><%=availability.days%></h6>
+            <% }else{ %>
+            <h6>No data available</h6>
+            <% } %>
+
+          </li>
+          <li class="list-group-item hvr-grow-shadow"><b>Time:</b>
+            <% if (availability) { %>
+            <h6><%=availability.time.startTime%> - <%=availability.time.endTime%></h6>
+            <% } else{ %>
+            <h6>No data available</h6>
+            <% } %>
+
+          </li>
+          <li class="list-group-item hvr-grow-shadow"><b>Shift:</b>
+            <% if (availability) { %>
+            <h6> <%=availability.shift %></h6>
+            <% } else{ %>
+            <h6>No data available</h6>
+            <% } %>
+
+          </li>
+        </ul>
+      </div>
+  </div>
+
+</body>
+
+</html>

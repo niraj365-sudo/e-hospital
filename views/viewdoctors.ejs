@@ -1,0 +1,81 @@
+<%- include('./partials/header.ejs'); %>
+<%- include('./partials/sideMenu.ejs'); %>
+
+
+<style>
+
+ #searchbox{
+   margin-left: 66%;
+ }
+ #doctor_count{
+   margin-left: 100px;
+ }
+
+</style>
+
+<div class="scrollable" id ="data">
+    <h4 class="title"><i class="fas fa-list"></i> Doctors List</h4>
+    
+    <section id="chooseView" style="background-color: rgba(10, 192, 65, 0.144);">
+      <div class="col-md-4" style="margin-top: 0%;margin-left: 6%;">
+        <br>
+       <h6 class="lead" style="font-size:14px;font-weight: 400; color: white"><b>Switch to :</b></h6> 
+       <div class="row">
+        <div class="col-sm-12 btn-group">
+          <a id="btn_all" href="/patient/viewdoctors"  class="btn btn-success btn-lg btn-block hvr-grow-shadow">View all doctors</a>
+          <a id="btn_current" href="/patient/activeDoctors"  class="btn btn-success btn-sm btn-block hvr-grow-shadow">View Active Doctors</a>
+          <a id="btn_avail" href="/patient/doctorsAvailability"  class="btn btn-success btn-sm btn-block hvr-grow-shadow">Check Doctor's Availability</a>
+        </div>
+      </div>
+      
+      
+    </div>
+    </section>
+    
+    <section id="all_doctors">
+      <hr>
+      <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : All doctors </h4> 
+    <p class="search">
+      <form action="" method="GET" id="searchbox" class="form-inline" >
+        <div class="form-group"> 
+          <input type="text" name="search" placeholder="Enter search query" class="form-control">
+          <br>
+          <input type="submit" value="Search" class="btn btn-dark">
+        </div>
+        <%- include('./partials/messages.ejs'); %>
+      </form>
+    </p>
+    <h5 id="doctor_count" class="btn btn-success"><b>Total doctors</b> : <%=doctorCount%></h5>
+    <br>
+    <br>
+    <table id="datatable" class="table table-bordered table-dark">
+    <thead class="thead-dark">
+      <tr>
+      <th style="width: 40%;" scope="col">Name</th>
+      <th style="width: 40%;" scope="col">Speciality</th>
+      <th style="width: 15%;" scope="col">Details</th>
+      <th scope="col">Appointment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% doctors.forEach(Doctor => { %>
+    <tr>
+      <td>
+        <img id="senderavatar" src="<%= Doctor.imageUrl%>"></img>
+        <b><%=(Doctor.salutation)+" "+ (Doctor.name)%></b></td>
+      <td><b style="color: rgb(214, 216, 215);"><%= Doctor.speciality %></b></td>
+      <td><a href="/patient/<%=Doctor.id%>" class="aa btn btn-success">View More Details</a></td>
+      <td><a href="/makeAppointment/<%=Doctor.id%>" class="aa btn btn-primary">Appoint Doctor</a></td>
+    </tr>
+    </tbody>
+    <% }) %>
+    </table>
+    </section>
+
+    
+    <script>
+      $('#btn_all').hide()
+    </script>
+  </div>
+
+

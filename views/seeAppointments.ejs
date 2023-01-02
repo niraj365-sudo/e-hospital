@@ -1,0 +1,76 @@
+<%- include('./partials/headerAdmin.ejs'); %> <%-
+include('./partials/sideMenuAdmin.ejs'); %>
+
+<div class="scrollable" id="data">
+  <h4 class="title"><i class="fas fa-list"></i> Appointment List</h4>
+
+  <%- include('./partials/messages.ejs'); %>
+  <hr />
+  <h4
+    style="margin-left: 7%; margin-right: 13%; margin-top: 20px; color: white"
+  >
+    <b>TABLE</b> : Patient's Appointments
+  </h4>
+  <table id="datatable" class="table table-bordered table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th style="width: 15%" scope="col">Patient Name</th>
+        <th style="width: 15%" scope="col">Appointed Doctor</th>
+        <th style="width: 20%" scope="col">Doctor Speciality</th>
+        <th scope="col">Appointment Date</th>
+        <th scope="col">Appointment Time</th>
+        <th scope="col">Date Submitted</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody id="tablebody">
+      <% appointments.forEach(Appointment => { %>
+      <tr>
+        <td scope="row"><%= Appointment.patientName%></td>
+        <td scope="row">
+          <a href="/viewdoctors/<%= Appointment.doctorID%>"
+            ><%= Appointment.doctorName%></a
+          >
+        </td>
+        <td><%= Appointment.doctorSpeciality%></td>
+        <% if(Appointment.appointmentDate === 'To Be Confirmed'){ %>
+        <td style="background-color: rgba(245, 66, 66, 0.205)">
+          <%= Appointment.appointmentDate%>
+        </td>
+        <% } else{ %>
+        <td style="background-color: rgba(66, 245, 135, 0.263)">
+          <%= Appointment.appointmentDate%>
+        </td>
+        <% } %> <% if(Appointment.appointmentTime === 'To Be Confirmed'){ %>
+        <td style="background-color: rgba(245, 66, 66, 0.205)">
+          <%= Appointment.appointmentTime%>
+        </td>
+        <% } else{ %>
+        <td style="background-color: rgba(66, 245, 135, 0.263)">
+          <%= Appointment.appointmentTime%>
+        </td>
+        <% } %>
+        <td>
+          <%= moment(Appointment.dateSubmitted).calendar(null, { sameDay:
+          '[Today at] LTS', nextDay: '[Tomorrow at] LTS', nextWeek: 'dddd',
+          lastDay: '[Yesterday at] LTS', lastWeek: '[Last] dddd [at] LTS',
+          sameElse: 'LLLL' });%>
+        </td>
+        <td>
+          <a
+            href="/updateAppointment/<%= Appointment.id%>"
+            class="btn btn-success"
+            >Update</a
+          >
+        </td>
+        <td>
+          <form action="/deleteAppointment/<%= Appointment.id%>" method="POST">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+    <% }) %>
+  </table>
+</div>

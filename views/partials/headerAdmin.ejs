@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="../public/images/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Hospital | Admim Dashboard</title>
+</head>
+
+<body>
+  <div id="header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-success p-0">
+      <a class="navbar-brand m-4 h1 " href><img src="/public/images/title_logo.svg" height="50" width="100" class="hvr-pulse-grow"></img></a>
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item px-6">
+              <a class="nav-link" href="/admindashboard">Dashboard Home</a>
+            </li>
+
+          </ul>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown ml-5">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user"></i> Welcome <%=user.name%>
+              </a>
+              <div class="dropdown-menu">
+                <a href="/adminprofile" class="dropdown-item">
+                  <i class="fa fa-user-circle"></i> Profile
+                </a>
+                <a href="/admin/logout" class="dropdown-item">
+                  <i class="fa fa-user-times"></i> Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>

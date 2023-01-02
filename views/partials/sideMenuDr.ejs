@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/public/images/css/style.css">
+  <link rel="stylesheet" href="/public/images/css/sideMenu.css">
+</head>
+<style>
+  .button {
+    padding-top: 0px 10px;
+    margin-left: 75px;
+  }
+
+  .nav-link {
+    color: rgb(233, 232, 227);
+  }
+
+  #icon {
+    padding: 2px;
+    position: relative;
+    color: #56CC9D;
+  }
+
+  .profileimage {
+    width: 300px;
+    height: 125px;
+    margin-top: 20px;
+    width: 50%;
+    margin-left: 50px;
+  }
+
+  .profilename {
+    margin-left: 45px;
+  }
+</style>
+
+
+<div id="sidebar">
+  <ul class="navbar-nav">
+    <div class="row">
+      <div class="col">
+        <li class="user"></li>
+        <img src="<%=user.imageUrl || '/public/images/profile.png'%>"
+          class="profileimage card-img rounded-circle "></img><br>
+        <span class="profilename"><a href="/doctorprofile" class="text-muted ml-2"><i class="fa fa-user"></i>
+            <%=user.name%></a></span>
+        </li>
+      </div>
+    </div>
+    <br>
+    <li id="side"><a href="/doctor/viewpatients" class="nav-link"><i id="icon" class="fas fa-procedures"></i> View
+        Patients</a></li>
+    <li id="side"><a href="/doctor/availability" class="nav-link"><i id="icon" class="fas fa-calendar-check"></i> Set
+        Availability</a></li>
+        <li id="side"><a href="/doctor/appointment" class="nav-link"><i id="icon" class="fas fa-calendar-check"></i> Patient's Appointment</a></li>
+
+  </ul>
+  <br>
+  <a href="/doctor/logout" class="button btn btn-success">Logout</a>
+  <br>
+  <div id="spin" class="spinner-border text-success" role="status" style="margin-left: 100px; margin-top: 50px;">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

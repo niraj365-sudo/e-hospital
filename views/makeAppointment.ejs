@@ -1,0 +1,34 @@
+<%- include('./partials/header.ejs'); %> <%- include('./partials/sideMenu.ejs');
+%>
+
+<style>
+  .appointment_card {
+    background: rgba(180, 175, 175, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+  }
+</style>
+
+<!-- Appointment button -->
+
+<div class="scrollable" id="data">
+  <h4 class="title"><i class="fas fa-user-clock"></i> Make Appointment</h4>
+  <br />
+
+    <form action="/makeAppointment/:id" method="POST">
+      <div class="col-sm-4">
+        <div class="appointment_card card">
+          <div class="card-body">
+          <br>
+          <p style="font-size: 17px;"><i class="fas fa-question-circle"></i> Are you sure you want to make that appointment?</p>
+          <hr>
+          <button type="submit" id="btn_appoint" class="btn  btn-success">
+            Yes, Appoint Doctor
+          </button>
+          <a href="/patient/viewdoctors" class="btn btn-danger" id="btn_no">Cancel Appointment</a>
+        </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

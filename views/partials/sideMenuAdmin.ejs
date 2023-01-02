@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/public/images/css/style.css">
+  <link rel="stylesheet" href="/public/images/css/sideMenuAdmin.css">
+</head>
+
+<style>
+  .button {
+    padding-top: 0px 10px;
+    margin-left: 75px;
+  }
+
+  .nav-link {
+    color: rgb(233, 232, 227);
+  }
+
+  #icon {
+    padding: 2px;
+    position: relative;
+    color: #56CC9D;
+  }
+
+  .profileimage {
+    width: 300px;
+    height: 125px;
+    margin-top: 20px;
+    width: 50%;
+    margin-left: 50px;
+  }
+
+  .profilename {
+    margin-left: 45px;
+  }
+</style>
+<div id="adminsidebar">
+  <ul class="navbar-nav">
+    <div class="row">
+      <div class="col">
+        <li class="user"></li>
+        <img src="<%=user.imageUrl || '/public/images/profile.png'%>"
+          class="profileimage card-img rounded-circle "></img><br>
+        <span class="profilename"><a href="/adminprofile" class="text-muted ml-2"><i class="fa fa-user"></i>
+            <%=user.name%></a></span>
+        </li>
+      </div>
+    </div>
+    <br>
+    <div class="sidenav">
+      <button class="dropdown-btn"><i class="fas fa-procedures"></i> Patient Section
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <li id="side"><a href="/viewpatients" class="nav-link"><i id="icon" class="far fa-address-card"></i> View
+            patients</a></li></i>
+        <li id="side"><a href="/seefeedbacks" class="nav-link"><i id="icon" class="fas fa-comment-dots"></i> See
+            feedbacks</a></li></i>
+        <li id="side"><a href="/seeAppointments" class="nav-link"><i id="icon" class="fas fa-comment-dots"></i> See
+            Appointments</a></li></i>    
+      </div>
+      <hr color="rgb(2, 233, 194);" size="2px">
+      <button class="dropdown-btn"><i class="fas fa-user-md"></i> Doctor Section
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <li id="side"><a href="/viewdoctors" class="nav-link"><i id="icon" class="far fa-address-card"></i> View
+            doctors</a></li></i>
+        <!-- <li id="side"><a href="#" class="nav-link"><i id="icon" class="far fa-address-card"></i> Available Doctors</a>
+        </li></i> -->
+      </div>
+    </div>
+  </ul>
+  <br>
+  <a href="/admin/logout" class="button btn btn-success">Logout</a>
+  <br>
+  <div id="spin" class="spinner-border text-success" role="status" style="margin-left: 100px; margin-top: 50px;">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<script>
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    });
+  }
+</script>

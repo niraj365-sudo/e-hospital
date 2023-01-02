@@ -1,0 +1,58 @@
+#adminsidebar{
+  width: 250px;
+  height: 1000px;
+  background: rgb(19, 17, 26);
+  float: left;
+  border-right: 2px solid rgba(245, 245, 245, 0.788);
+  border-right-style: groove;
+}
+
+.sidenav {
+     padding:10px;
+    border-bottom: 1px solid rgb(2, 233, 194);
+    border-bottom-left-radius: 12%;
+    border-bottom-style: outset;
+    font-family: sans-serif;
+    list-style-type: none
+  }
+  
+
+  .sidenav a, .dropdown-btn {
+    padding: 10px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: whitesmoke;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .sidenav a:hover, .dropdown-btn:hover {
+    background:white;
+    color: black;
+    transform:scale(1.05);
+    }
+  
+  .active {
+    background-color: rgb(13, 112, 96);
+    color: white;
+  }
+  
+
+  .dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+  }
+  
+  .fa-caret-down {
+    float: right;
+    padding-right: 8px;
+  }
+  
+  

@@ -1,0 +1,96 @@
+<%- include('./partials/header.ejs'); %>
+<%- include('./partials/sideMenu.ejs'); %>
+
+
+<style>
+
+ #searchbox{
+   margin-left: 66%;
+ }
+ #doctor_count{
+   margin-left: 100px;
+ }
+</style>
+
+<div class="scrollable" id ="data">
+    <h4 class="title">Doctors List</h4>
+    
+    <section id="chooseView" style="background-color: rgba(10, 192, 65, 0.144);">
+      <div class="col-md-4" style="margin-top: 0%;margin-left: 6%;">
+        <br>
+       <h6 class="lead" style="font-size:14px;font-weight: 400; color: white"><b>Switch to :</b></h6> 
+       <div class="row">
+        <div class="col-sm-12 btn-group">
+          <a id="btn_all" href="/patient/viewdoctors"  class="btn btn-success btn-sm btn-block hvr-grow-shadow">View all doctors</a>
+          <a id="btn_current" href="/patient/activeDoctors"  class="btn btn-success btn-sm btn-block hvr-grow-shadow">View Active Doctors</a>
+          <a id="btn_avail" href="/patient/doctorsAvailability"  class="btn btn-success btn-sm btn-block hvr-grow-shadow">Check Doctor's Availability</a>
+        </div>
+      </div>
+
+    </div>
+    </section>
+    
+    <section id="current_doctors">
+      <hr>
+      <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : Currently available doctors </h4> 
+    <p class="search">
+      <form action="" method="GET" id="searchbox" class="form-inline" >
+        <div class="form-group"> 
+          <input type="text" name="search" placeholder="Doctor's name" class="form-control">
+          <input type="submit" value="Search" class="btn btn-dark">
+        </div>
+        <%- include('./partials/messages.ejs'); %>
+      </form>
+    </p>
+    <h5 id="doctor_count" class="btn btn-success"><b>Active doctors</b> : <%=availDocCount%></h5>
+    <br>
+    <br>
+    <table id="datatable" class="table table-bordered table-dark">
+    <thead class="thead-dark">
+      <tr>
+      <th style="width: 30%;" scope="col">Name</th>
+      <th style="width: 30%;" scope="col">Speciality</th>
+      <th style="width: 20%;" scope="col">Time</th>
+      <th style="width: 10%;" scope="col">Details</th>
+    </tr>
+    </thead>
+    <tbody id="tablebody">
+    <% availDoc.forEach(availDoc => { %>
+    <tr>
+      <td><b style="font-size: 20px;"><%="Dr."+" "+availDoc.doctorname %></b></td>
+      <td><b style="color: rgb(214, 216, 215);"><%= availDoc.speciality %></b></td>
+      <td><b style="color: rgb(6, 241, 222);" class="hvr-grow-shadow"><%= availDoc.time.startTime%> -  <%= availDoc.time.endTime%> </b></td>
+      <td><a href="/patient/<%=availDoc.doctorid%>" class="aa btn btn-success">View More Details</a></td>
+    </tr>
+    </tbody>
+    <% }) %>
+    </table>
+    </section>
+    <section id="null_doctors">
+        <hr>
+        <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : Currently available doctors </h4> 
+        <div class="ml-2" style="width: 100%;">
+            <div id="null_alert" class="alert alert-dark" style="background-color: rgba(2, 231, 247, 0.048);" role="alert">
+                <h3 class="alert-heading"><i style="color: rgba(243, 231, 230, 0.651);" class="fas fa-exclamation-circle"></i> Oops..</h3>
+                <h6 style="font-weight: 200">No doctors available currently</h6>
+            </div>
+        </div>
+    </section>    
+    <script>
+     $('#btn_current').hide()
+    </script>
+
+<script>
+    function isEmpty(check) {
+      return !$.trim(check.html())
+    }
+    if (isEmpty($('#tablebody'))) {
+      ($('#current_doctors').hide())
+    } else
+      ($('#null_doctors').hide())
+  </script>
+
+
+  </div>
+
+

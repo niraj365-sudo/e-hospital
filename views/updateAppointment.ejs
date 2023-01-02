@@ -1,0 +1,68 @@
+<%- include('./partials/headerAdmin.ejs'); %>
+<%-include('./partials/sideMenuAdmin.ejs'); %>
+
+<style>
+  .upload_card {
+    background: rgba(180, 175, 175, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+  }
+</style>
+
+<div class="scrollable" id="data">
+  <h4 class="title"><i class="fas fa-file-upload"></i> Update Appointment</h4>
+  <br />
+  <br />
+
+  <form action="/updateAppointment/:id" method="POST" autocomplete="off">
+    <div class="col-sm-6">
+      <div class="upload_card card">
+        <%- include('./partials/messages.ejs'); %>
+        <div class="card-body">
+          <div>
+            <label class="lead" style="font-size: 18px" for="title"
+              >Appointment Date</label
+            >
+            <input
+              type="date"
+              name="appointmentDate"
+              id=""
+              placeholder="Select date"
+              class="form-control"
+            />
+          </div>
+          <br />
+          <div>
+            <label class="lead" style="font-size: 18px" for="title"
+              >Appointment Time</label
+            >
+            <input
+              type="text"
+              name="appointmentTime"
+              id="appointmentTime"
+              placeholder="hh:mm AM/PM "
+              class="timepicker form-control"
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn btn-success">
+            Update Appointment
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $("input.timepicker").timepicker({
+      timeFormat: "h:mm p",
+      interval: 30,
+      startTime: "08:00",
+      dynamic: false,
+      dropdown: true,
+      scrollbar: true,
+    });
+  });
+</script>

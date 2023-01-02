@@ -1,0 +1,73 @@
+<%- include('./partials/headerDr.ejs'); %>
+<%- include('./partials/sideMenuDr.ejs'); %>
+
+<link href="../public/images/css/style.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<style>
+  #details {
+    background: rgba(44, 42, 42, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    float: left;
+  }
+  .list-group-item {
+    background: rgba(109, 103, 103, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    font-size: 16px;
+  }
+</style>
+
+<div class="scrollable" id="data">
+  <h4 class="title"><i class="fas fa-user-clock"></i> Availability</h4><br>
+
+  <section id=""></section>
+    <div id="details" class="card col-md-6 ml-2">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item hvr-grow-shadow mt-2"><b>Days:</b>
+          <% if (availData) { %>
+          <h5><%=availData.days%></h5>
+          <% } %>
+
+        </li>
+        <li class="list-group-item hvr-grow-shadow"><b>Time:</b>
+          <% if (availData) { %>
+          <h5><%=availData.time.startTime%> - <%=availData.time.endTime%></h5>
+          <% } %>
+
+        </li>
+        <li class="list-group-item hvr-grow-shadow"><b>Shift:</b>
+          <% if (availData) { %>
+          <h5><%=availData.shift %></h5>
+          <% } %>
+
+        </li>
+
+        <br>
+        <a href="/doctor/setAvailability" class="set btn btn-success mb-2">Set
+          Availability</a>
+        <a href="/doctor/updateAvailability" class="update btn btn-success mb-2">Update
+          Availability</a>
+      </ul>
+      <%- include('./partials/messages.ejs'); %>
+    </div>
+  </section>
+
+  <script>
+    function isEmpty(check) {
+      return !$.trim(check.html())
+    }
+    if (isEmpty($('h5'))) {
+      ($('.update').hide())
+    } else
+      ($('.set').hide())
+  </script>
+
+  <!-- <script>
+  if ($h5.children().length == 0){
+    ($('.update').hide())
+}else{
+  ($('.set').hide())
+}
+</script> -->

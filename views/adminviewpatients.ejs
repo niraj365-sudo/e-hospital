@@ -1,0 +1,52 @@
+<%- include('./partials/headerAdmin.ejs'); %>
+<%- include('./partials/sideMenuAdmin.ejs'); %>
+<style>
+ #searchbox{
+   margin-left: 66%;
+ }
+ #patient_count{
+   margin-left: 100px;
+ }
+</style>
+
+<div class="scrollable" id ="data">
+    <h4 class="title"><i class="fas fa-list"></i> Patients List</h4>
+    <br>
+    <p class="search">
+      <form action="" id="searchbox" method="GET" class="form-inline" >
+        <div class="form-group">
+          <input type="text" name="search" placeholder="Patient's name" class="form-control">
+          <input type="submit" value="Search" class="btn btn-dark">
+        </div>
+        <%- include('./partials/messages.ejs'); %>
+      </form>
+    </p>
+    <h5 id="patient_count" class="btn btn-success"><b>Total doctors</b> : <%=patientCount%></h5>
+    <table id="datatable" class="table table-bordered table-dark">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Patient ID</th>
+      <th style="width: 30%;" scope="col">Name</th>
+      <th style="width: 30%;" scope="col">Email</th>
+      <th scope="col">Registration Date</th>
+      <th scope="col">Details</th>
+      <th scope="col">Upload Reports</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% patients.forEach(Patient => { %>
+    <tr>
+      <th scope="row"><%= Patient.tokennumber %></th>
+      <td>
+        <img id="senderavatar" src="<%= Patient.imageUrl%>"></img>
+        <%= Patient.name %>
+      </td>
+      <td><%= Patient.email %></td>
+      <td><%= Patient.date.toDateString()%></td>
+      <td><a href="/viewpatients/<%=Patient.id%>" class="aa btn btn-success">View More Details</a></td>
+      <td><a href="/adminupload/<%=Patient.id%>" class="aa btn btn-danger">Upload Reports</a></td>
+    </tr>
+    </tbody>
+    <% }) %>
+    </table>
+  </div>

@@ -1,0 +1,85 @@
+<%- include('./partials/header.ejs'); %>
+<%- include('./partials/sideMenu.ejs'); %>
+
+<style>
+
+#profile-image {
+    border: 1px solid rgba(255, 255, 255, 0.247);
+    margin-left: 11030;
+    margin: 20px 20px;
+  }
+
+  #details {
+    background: rgba(44, 42, 42, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    float: left;
+  }
+
+  .list-group-item {
+    background: rgba(109, 103, 103, 0.137);
+    color: white;
+    border: 3px solid rgba(255, 255, 255, 0.13);
+    font-size: 16px;
+  }
+  
+  </style>
+    
+
+<div class="scrollable" id ="data">
+    <h4 class="title"><i class="far fa-id-badge"></i> Profile</h4>
+    <br>
+
+<%- include('./partials/messages.ejs'); %>
+
+<!--PROFILE-->
+
+<section class="actions mt-4">
+  
+      <div class="row">
+        <div id="details" class="card col-md-5 ml-5">
+        <ul class="list-group list-group-flush">
+          <div id="profile-image" class="col-md-4"> 
+            <img src="<%=user.imageUrl%>" class="card-img"></img>
+            <a href="" class="text-muted ml-2" data-toggle="modal" data-target="#changePhotoModal"><i class="fa fa-camera"></i> Change Photo</a>
+          </div>
+                <li class="list-group-item mb-2 hvr-grow-shadow" style=" background-color: transparent;"><b style="font-size: 30px;"><%=user.name%></b></li>
+                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Patient ID :</b> <%=user.tokennumber%> </li>
+                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Email :</b> <%=user.email%></li>
+                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Gender :</b> <%=user.gender%> </li>
+                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Age :</b> <%=user.age%> </li>
+                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Address :</b> <%=user.address%> </li>
+                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Joined :</b><%=user.date.toDateString()%> </li>
+                <br>
+                <!-- <li class="list-group-item"><a href="" class="btn btn-success mb-2" data-toggle="modal" data-target="#updateProfileModal">Update Profile</a></li> -->
+              </ul> 
+          </div>
+          </div>
+</section>
+
+
+<!--Change Photo Modal-->
+<div class="modal fade" id="changePhotoModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="changePhotoModalLabel">
+          Change Photo
+        </h5>
+        <button class="close" data-dismiss="modal" ><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/patient/change_avatar" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="photo" class="form-control-label">Change Photo</label>
+            <input type="file"  name="image" class="form-control">
+          </div>
+           <input type="submit" class="btn btn-sm btn-primary m-2" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+

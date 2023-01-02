@@ -1,0 +1,47 @@
+<%- include('./partials/headerAdmin.ejs'); %>
+<%- include('./partials/sideMenuAdmin.ejs'); %>
+<style>
+
+ #searchbox{
+   margin-left: 66%;
+ }
+ #doctor_count{
+   margin-left: 100px;
+ }
+</style>
+
+<div class="scrollable" id ="data">
+    <h4 class="title"><i class="fas fa-list"></i> Doctors List</h4>
+    <br>
+    <p class="search">
+      <form action="" method="GET" id="searchbox" class="form-inline" >
+        <div class="form-group">
+          <input type="text" name="search" placeholder="Doctor's name" class="form-control">
+          <input type="submit" value="Search" class="btn btn-dark">
+        </div>
+        <%- include('./partials/messages.ejs'); %>
+      </form>
+    </p>
+    <h5 id="doctor_count" class="btn btn-success"><b>Total doctors</b> : <%=doctorCount%></h5>
+    <br>
+    <table id="datatable" class="table table-bordered table-dark">
+    <thead class="thead-dark">
+    <tr>  
+      <th style="width: 40%;" scope="col">Name</th>
+      <th style="width: 45%;" scope="col">Speciality</th>
+      <th scope="col">Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% doctors.forEach(Doctor => { %>
+    <tr>
+      <td>
+        <img id="senderavatar" src="<%= Doctor.imageUrl%>"></img>
+        <b><%= Doctor.name %></b></td>
+      <td><b style="color: rgb(214, 216, 215);"><%= Doctor.speciality %></b></td>
+      <td><a href="/viewdoctors/<%=Doctor.id%>" class="aa btn btn-success">View More Details</a></td>
+    </tr>
+    </tbody>
+    <% }) %>
+    </table>
+  </div>

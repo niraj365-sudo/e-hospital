@@ -1,0 +1,90 @@
+<% switch (role) {
+    case 'Admin' : %>
+<%- include('./partials/headerAdmin.ejs'); %>
+<%- include('./partials/sideMenuAdmin.ejs'); %>
+<% break;
+    case 'Doctor' : %>
+<%- include('./partials/headerDr.ejs'); %>
+<%- include('./partials/sideMenuDr.ejs'); %>
+<% break;  
+    case 'Patient' : %>
+<%- include('./partials/header.ejs'); %>
+<%- include('./partials/sideMenu.ejs'); %>
+<% break;
+    } %>
+
+<head>
+    <link href="../public/images/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../public/images/css/sideMenu.css" rel="stylesheet" type="text/css" />
+    <link href="../public/images/css/sideMenuAdmin.css" rel="stylesheet" type="text/css" />
+</head>
+
+<style>
+    .report-image {
+        height: 150px;
+        width: 150px;
+    }
+
+    .scrollable {
+        height: 700px;
+        /* or any value */
+        overflow-y: auto;
+    }
+    .hospital_report{
+        background: rgba(180, 175, 175, 0.137);
+        color: white;
+        border: 3px solid rgba(255, 255, 255, 0.13);
+    }
+</style>
+
+<body>
+    <div class="scrollable" id="data">
+        <h4 id="title" class="title"><i class="fas fa-file-medical"></i> Reports From Hospital</h4>
+        <br>
+        <section class="actions mt-4">
+            <div class="row">
+                <% adminimages.forEach(adminimages => { %>
+                <ul class="report-list">
+                    <div class="row">
+                        <div id="hospital_report" class="hospital_report card ml-4 hvr-float-shadow ">
+                            <div class="card-body">
+                                <h6 style="text-align: center;" class="mb-2">
+                                    <%= adminimages.title %>
+                                </h6>
+                                <hr>
+                                <img class="report-image hvr-grow-shadow" style="margin-left: 11%;" src="<%= adminimages.imageUrl %>" alt="Image Here"></img>
+                                <br>
+                                <hr>
+                                <h6 class="lead" style="font-size: 12px;">
+                                    <b>Date Uploaded: </b>
+                                    <%= adminimages.date.toDateString() %>
+                                </h6>
+                                <a href="<%= adminimages.imageUrl %>" class="btn btn-success btn-block " target="_blank">View Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+                <% }) %>
+            </div>
+            <div class="ml-2" style="width: 100%;">
+                <div id="null_alert" class="alert alert-dark" style="background-color: rgba(2, 231, 247, 0.048);" role="alert">
+                    <h3 class="alert-heading"><i style="color: rgba(243, 231, 230, 0.651);" class="fas fa-exclamation-circle"></i> Oops..</h3>
+                    <h6 style="font-weight: 200">No reports uploaded yet</h6>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+<script>
+    function isEmpty(check) {
+        return !$.trim(check.html())
+    }
+    if (isEmpty($('#hospital_report'))) {
+        ($('#hospital_report').hide())
+    } else {
+        ($('#null_alert').hide())
+    }
+</script>
+
+</html>

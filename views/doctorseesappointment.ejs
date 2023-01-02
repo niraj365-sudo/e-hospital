@@ -1,0 +1,51 @@
+<%- include('./partials/headerDr.ejs'); %> <%-
+include('./partials/sideMenuDr.ejs'); %>
+
+<div class="scrollable" id="data">
+  <h4 class="title"><i class="fas fa-list"></i> Appointment List</h4>
+
+  <%- include('./partials/messages.ejs'); %>
+  <hr />
+  <h4
+    style="margin-left: 7%; margin-right: 13%; margin-top: 20px; color: white"
+  >
+    <b>TABLE</b> : Patient's Appointments
+  </h4>
+  <table id="datatable" class="table table-bordered table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th style="width: 50%" scope="col">Patient Name</th>
+        <th style="width: 40%" scope="col">Appointment Date</th>
+        <th scope="col">Appointment Time</th>
+      </tr>
+    </thead>
+    <tbody id="tablebody">
+      <% appointments.forEach(Appointment => { %>
+      <tr>
+        <td scope="row">
+            <a href="/viewpatien/<%= Appointment.patientID%>"
+              ><%= Appointment.patientName%></a
+            >
+          </td>
+        <% if(Appointment.appointmentDate === 'To be confirmed'){ %>
+        <td style="background-color: rgba(245, 66, 66, 0.205)">
+          <%= Appointment.appointmentDate%>
+        </td>
+        <% } else{ %>
+        <td style="background-color: rgba(66, 245, 135, 0.263)">
+          <%= Appointment.appointmentDate%>
+        </td>
+        <% } %> <% if(Appointment.appointmentTime === 'To be confirmed'){ %>
+        <td style="background-color: rgba(245, 66, 66, 0.205)">
+          <%= Appointment.appointmentTime%>
+        </td>
+        <% } else{ %>
+        <td style="background-color: rgba(66, 245, 135, 0.263)">
+          <%= Appointment.appointmentTime%>
+        </td>
+        <% } %>
+      </tr>
+    </tbody>
+    <% }) %>
+  </table>
+</div>
