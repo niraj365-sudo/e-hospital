@@ -65,6 +65,9 @@ app.use(
     secret: "secret", //can be whatever
     resave: false,
     saveUninitialized: false,
+    cookie: { 
+      sameSite: 'none', secure: true
+     }
   })
 );
 
