@@ -55,6 +55,7 @@ app.use(
 //bodyparsser
 // app.use(bodyparser.urlencoded({ extended: false }));
 //No bodyparser needed
+console.log('I am message from app.js');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //exp session
