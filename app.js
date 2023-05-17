@@ -60,16 +60,20 @@ app.use(express.urlencoded({ extended: false }));
 //express-session middleware
 //we can search from express session github
 
-app.use(
-  session({
-    secret: "secret", //can be whatever
-    resave: false,
-    saveUninitialized: false,
-//     cookie: { 
-//       sameSite: 'none', secure: true
-//      }
-  })
-);
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+      clientPromise:false,
+      mongoUrl: process.env.MONGO_URI,
+      ttl: 1 * 24 * 60 * 60 // save session for 1 days
+  }),
+  cookie: {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 1// expires in 1 days
+  }
+}))
 
 //passport middleware
 app.use(passport.initialize());
