@@ -1,72 +1,122 @@
-<%- include('./partials/header.ejs'); %> <%- include('./partials/sideMenu.ejs');
-%>
 
+ <!-- Page Wrapper -->
+    <div id="wrapper">
 
-<div class="scrollable" id="data">
-    <h4 class="title"><i class="fas fa-list"></i> Appointment List</h4>
-    <%- include('./partials/messages.ejs'); %>
+        <!-- Sidebar -->
+        <%- include('./partials/sidebar.ejs'); %>
 
-    <section id="appointments">
-      <hr>
-      <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : My Appointments </h4> 
-      <table id="datatable" class="table table-bordered table-dark">
-          <thead class="thead-dark">
-            <tr>
-              <th style="width: 25%;" scope="col">Doctor Name</th>
-              <th style="width: 30%;" scope="col">Doctor Speciality</th>
-              <th scope="col">Appointment Date</th>
-              <th scope="col">Appointment Time</th>
-              <th scope="col">Cancel Appointment</th>
-            </tr>
-          </thead>
-          <tbody id="tablebody">
-            <% appointments.forEach(Appointment => { %>
-            <tr>
-              <% if(Appointment.appointmentDate === 'To Be Confirmed'){ %>
-                <td scope="row" style="background-color: rgba(245, 66, 66, 0.200)"><a href="/patient/<%= Appointment.doctorID%>" style="color: white;"><%= Appointment.doctorName%></a></td>
-                <td style="background-color: rgba(245, 66, 66, 0.200)"><%= Appointment.doctorSpeciality%></td>
-                <td style="background-color: rgba(245, 66, 66, 0.200)">
-                  <b><%= Appointment.appointmentDate%></b>
-                </td>
-                <td style="background-color: rgba(245, 66, 66, 0.200)">
-                  <b><%= Appointment.appointmentTime%></b>
-                </td>
-                <% } else{ %>
-                  <td scope="row" style="background-color: rgba(66, 245, 111, 0.1)"><a href="/patient/<%= Appointment.doctorID%>" style="color: white;"><%= Appointment.doctorName%></a></td>
-                  <td style="background-color: rgba(66, 245, 111, 0.1)"><%= Appointment.doctorSpeciality%></td>
-                  <td style="background-color: rgba(66, 245, 111, 0.1)">
-                    <b><%= Appointment.appointmentDate%></b>
-                  </td>
-                  <td style="background-color: rgba(66, 245, 111, 0.1)">
-                    <b><%= Appointment.appointmentTime%></b>
-                  </td>
-                <% } %>
-              <td><a href="/cancelAppointment/<%=Appointment.id%>" id="btn_cancel" class="btn btn-danger">Cancel Appointment</button></td>
-              </td>
-            </tr>
-          </tbody>
-          <% }) %>
-        </table>
-    </section>
+        <!-- End of Sidebar -->
 
-    <section id="no_appointments">
-      <hr>
-        <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : My Appointments </h4> 
-        <div class="ml-2" style="width: 100%;">
-            <div id="null_alert" class="alert alert-dark" style="background-color: rgba(2, 231, 247, 0.048);" role="alert">
-                <h3 class="alert-heading"><i style="color: rgba(243, 231, 230, 0.651);" class="fas fa-exclamation-circle"></i> Oops..</h3>
-                <h6 style="font-weight: 200">No doctors appointed yet!<br><br><p>Click <a href="/patient/viewdoctors/" style="color: yellowgreen;">here</a> to appoint one</p></h6>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <%- include('./partials/top_nav.ejs'); %>
+
+                <!-- End of Topbar -->
+                <%- include('./partials/messages.ejs'); %>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+
+                    <!-- DataTales Example -->
+                  <section id="appointments">
+                    <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                          <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
+                      </div>
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                          <th>Doctor Name</th>
+                                          <th>Doctor Speciality</th>
+                                          <th>Appointment Date</th>
+                                          <th>Appointment Time</th>
+                                          <th>Cancel Appointment</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody id="tablebody">
+                                    <% appointments.forEach(Appointment => { %>
+                                      <tr>
+                                        <% if(Appointment.appointmentDate === 'To Be Confirmed'){ %>
+                                          <td><a href="/patient/<%= Appointment.doctorID%>" ><%= Appointment.doctorName%></a></td>
+                                          <td ><%= Appointment.doctorSpeciality%></td>
+                                          <td >
+                                            <b><%= Appointment.appointmentDate%></b>
+                                          </td>
+                                          <td >
+                                            <b><%= Appointment.appointmentTime%></b>
+                                          </td>
+                                          <% } else{ %>
+                                            <td scope="row" style="background-color: rgba(66, 245, 111, 0.1)"><a href="/patient/<%= Appointment.doctorID%>" style="color: white;"><%= Appointment.doctorName%></a></td>
+                                            <td style="background-color: rgba(66, 245, 111, 0.1)"><%= Appointment.doctorSpeciality%></td>
+                                            <td style="background-color: rgba(66, 245, 111, 0.1)">
+                                              <b><%= Appointment.appointmentDate%></b>
+                                            </td>
+                                            <td style="background-color: rgba(66, 245, 111, 0.1)">
+                                              <b><%= Appointment.appointmentTime%></b>
+                                            </td>
+                                          <% } %>
+                                        <td><a href="/cancelAppointment/<%=Appointment.id%>" id="btn_cancel" class="btn btn-danger">Cancel Appointment</button></td>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                    <% }) %>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  </section>
+
+                  <section id="no_appointments">
+                      <div class="ml-2 " style="width: 100%;">
+                          <div id="null_alert" class="alert alert-dark" style="background-color: rgba(2, 231, 247, 0.048);" role="alert">
+                              <h3 class="alert-heading"><i style="color: rgba(30, 28, 28, 0.785);" class="fas fa-exclamation-circle"></i> Oops..</h3>
+                              <h6 style="font-weight: 200">No doctors appointed yet!<br><br><p>Click <a href="/patient/viewdoctors/" style="color: rgb(72, 191, 59);"><b>here</b> </a> to appoint one</p></h6>
+                          </div>
+                      </div>
+                  </section>                 
+
+                </div>
+                <!-- /.container-fluid -->
+
             </div>
-        </div>
-    </section>
-</div>
+            <!-- End of Main Content -->
 
-<script>
-  function isEmpty(check) {
-    return !$.trim(check.html())
-  }
-  if (isEmpty($('#tablebody'))) {
-    ($('#appointments').hide())
-  } else
-    ($('#no_appointments').hide())
-</script>
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script>
+// Check if the table has data
+var tableBody = document.getElementById("tablebody");
+var noAppointmentsSection = document.getElementById("no_appointments");
+
+if (tableBody.rows.length > 0) {
+  // Table has data, display the "appointments" section
+  document.getElementById("appointments").style.display = "block";
+  noAppointmentsSection.style.display = "none";
+} else {
+  // Table is empty, display the "no-appointments" section
+  document.getElementById("appointments").style.display = "none";
+  noAppointmentsSection.style.display = "block";
+}
+
+    </script>
+    

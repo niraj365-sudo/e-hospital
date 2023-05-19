@@ -1,92 +1,104 @@
-<% switch (role) {
-    case 'Admin' : %>
-  <%- include('./partials/headerAdmin.ejs'); %>
-  <%- include('./partials/sideMenuAdmin.ejs'); %>
-  <% break;
-    case 'Doctor' : %>
-  <%- include('./partials/headerDr.ejs'); %>
-  <%- include('./partials/sideMenuDr.ejs'); %>
-  <% break;
-      case 'Patient' : %>
-  <%- include('./partials/header.ejs'); %>
-  <%- include('./partials/sideMenu.ejs'); %>
-  <% break;
-    } %>
-  
-  <head>
-      <title>E-Hospital|<%-(role)%> Dashboard:Patient Uploads</title>
-      <link href="../public/images/css/style.css" rel="stylesheet" type="text/css" />
-      <link href="../public/images/css/sideMenu.css" rel="stylesheet" type="text/css" />
-      <link href="../public/images/css/sideMenuAdmin.css" rel="stylesheet" type="text/css" />
-  </head>
-  
-  <style>
-      .report-image {
-          height: 150px;
-          width: 150px;
-      }
-      .scrollable {
-          height: 700px;
-          /* or any value */
-          overflow-y: auto;
-      }
-      .patient_report{
-          background: rgba(180, 175, 175, 0.137);
-          color: white;
-          border: 3px solid rgba(255, 255, 255, 0.13);
-      }
-      
-  </style>
-  
-  <body>
-      <div class="scrollable" id="data">
-          
-          <h4 id="title" class="title"><i class="far fa-folder-open"></i> Uploads</h4>
-          <br>
-          
-          <section class="actions mt-4">
-              <div class="row">
-                  <% images.forEach(images => { %>
-                  <ul class="report-list">
-                      <div class="row">
-                          <div id="patient_report" class="patient_report card ml-4 hvr-float-shadow">
-                              <div class="card-body">
-                                  <h6 style="text-align: center;" class="mb-2">
-                                      <%= images.title %>
-                                  </h6>
-                                  <hr>
-                                  <img class="report-image hvr-grow-shadow" style="margin-left: 11%;" src="<%= images.imageUrl %>" alt="Image Here"></img>
-                                  <br>
-                                  <hr>
-                                  <h6 class="lead" style="font-size: 12px;">
-                                      <b>Date Uploaded : </b>
-                                      <%= images.date.toDateString() %>
-                                  </h6>
-                                  <a href="<%= images.imageUrl %>" class="btn btn-success btn-block" target="_blank">View Report</a>
-                              </div>
-                          </div>
-                      </div>
-                  </ul>
-                  <% }) %>
-              </div>
-              <div class="ml-2" style="width: 100%;">
-                  <div id="null_alert" class="alert alert-dark" style="background-color: rgba(2, 231, 247, 0.048);" role="alert">
-                      <h3 class="alert-heading"><i style="color: rgba(243, 231, 230, 0.651);" class="fas fa-exclamation-circle"></i> Oops..</h3>
-                      <h6 style="font-weight: 200">No reports uploaded yet</h6>
-                  </div>
-              </div>
-          </section>
-          </div>
-  </body>
-  
-  <script>
-      function isEmpty(check) {
-          return !$.trim(check.html())
-      }
-      if (isEmpty($('#patient_report'))) {
-          ($('#patient_report').hide())
-      } else
-          ($('#null_alert').hide())
-  </script>
-  
-  </html>
+
+<body>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <%- include('./partials/sidebar.ejs'); %>
+        <!-- End of Sidebar -->
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            
+            <!-- Main Content -->
+            <div id="content">
+                
+                <!-- Topbar -->
+                
+                <%- include('./partials/top_nav.ejs'); %>
+                <!-- End of Topbar -->
+                <%- include('./partials/messages.ejs'); %>
+
+                <!-- Begin Page Content -->
+                <div class="container">
+
+                    <!-- Outer Row -->
+                    <div class="row justify-content-center">
+            
+                        <div class="col-xl-10 col-lg-12 col-md-9">
+            
+                            <div class="card o-hidden border-0 shadow-lg ">
+                                <div class="card-body p-3">
+                                    <!-- Nested Row within Card Body -->
+                                    <section id="reports">
+                                        <div class="row">
+                                            <% images.forEach(images => { %>
+                                                <div class="report-list">
+                                                    <div class="row">
+                                                        <div id="patient_report" class="patient_report card p-2 hvr-float-shadow">
+                                                            <div class="card-body">
+                                                                <h6 style="text-align: center;" class="mb-2">
+                                                                    <%= images.title %>
+                                                                </h6>
+                                                                <hr>
+                                                                <img class="report-image hvr-grow-shadow" style="margin-left: 11%; width: 60%;" src="<%= adminimages.imageUrl %>" alt="Image Here"></img>
+                                                                <br>
+                                                                <hr>
+                                                                <h6 style="font-size: 12px;">
+                                                                    <b>Date Uploaded : </b>
+                                                                    <%= images.date.toDateString() %>
+                                                                </h6>
+                                                                <a href="<%= images.imageUrl %>" class="btn btn-primary btn-block" target="_blank">View Report</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% }) %>
+                                        </div>
+                                    </section>
+                                    <section id="no-report">
+                                        <div class="p-3" style="width: 100%;">
+                                            <div id="null_alert" class="alert alert-dark" style="background-color: rgba(255, 255, 255, 0.814);" role="alert">
+                                                <h3 class="alert-heading"><i style="color: rgba(0, 0, 0, 0.651);" class="fas fa-exclamation-circle"></i> Oops..</h3>
+                                                <h6 style="font-weight: 200; color: 4e73df;">No reports uploaded yet</h6>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+            
+                        </div>
+            
+                    </div>
+            
+                
+            
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <script>
+// Get the report section and no-report section elements
+var reportSection = document.getElementById('reports');
+var noReportSection = document.getElementById('no-report');
+
+// Check if there are any reports
+var reportList = reportSection.getElementsByClassName('report-list');
+if (reportList.length > 0) {
+  // There are reports, hide the no-report section
+  noReportSection.style.display = 'none';
+} else {
+  // No reports, hide the report section
+  reportSection.style.display = 'none';
+}
+
+    </script>
+    
+</body>

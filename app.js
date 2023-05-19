@@ -35,8 +35,15 @@ mongoose
   .catch((err) => console.log(err));
 
 //ejs
+app.set('view engine', 'ejs')
+app.set('layout', 'layouts/mainLayout')
+// Define a middleware function to set the default layout
+
+//Static folder
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(expresslayouts);
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 //nocache middleware

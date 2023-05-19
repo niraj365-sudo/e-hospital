@@ -1,49 +1,98 @@
-<%- include('./partials/header.ejs'); %> <%-
-include('./partials/sideMenu.ejs');%>
 
-<style>
-  .upload_card {
-    background: rgba(180, 175, 175, 0.137);
-    color: white;
-    border: 3px solid rgba(255, 255, 255, 0.13);
-  }
-</style>
-<div class="scrollable" id="data">
-  <h4 id="title" class="title">
-    <i class="fas fa-file-upload"></i> Upload your reports
-  </h4>
-  <br />
-  <br />
-  <form action="upload_reports" method="POST" enctype="multipart/form-data">
-    <div class="col-sm-6">
-      <div class="upload_card card">
-        <%- include('./partials/messages.ejs'); %>
-        <div class="card-body">
-          <div>
-            <label class="lead" style="font-size: 18px" for="title"
-              >Report Description</label
-            >
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Type report name or its description"
-              class="form-control"
-            />
+<body>
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+      <!-- Sidebar -->
+      <%- include('./partials/sidebar.ejs'); %>
+      <!-- End of Sidebar -->
+      
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+          
+          <!-- Main Content -->
+          <div id="content">
+              
+              <!-- Topbar -->
+              
+              <%- include('./partials/top_nav.ejs'); %>
+              <!-- End of Topbar -->
+
+              <%- include('./partials/messages.ejs'); %>
+
+              <!-- Begin Page Content -->
+              <div class="container">
+
+                  <!-- Outer Row -->
+                  <div class="row justify-content-center">
+          
+                      <div class="col-xl-10 col-lg-12 col-md-9 mt-5">
+          
+                          <div class="card o-hidden border-0 shadow-lg ">
+                              <div class="card-body p-3">
+                                  <!-- Nested Row within Card Body -->
+                                  <section id="no-report">
+                                    <div class="card-body">
+                                      <div>
+                                        <label class="lead" style="font-size: 18px" for="title"
+                                          >Report Description</label
+                                        >
+                                        <input
+                                          type="text"
+                                          name="title"
+                                          id="title"
+                                          placeholder="Type report name or its description"
+                                          class="form-control"
+                                        />
+                                      </div>
+                                      <br />
+                                      <div class="d-flex flex-column">
+                                        <label for="image" style="font-size: 18px" class="lead"
+                                          >Image</label
+                                        >
+                                        <input type="file" name="image" id="image" class="form-label" />
+                                      </div>
+                                      <br />
+                                      <button id="upload_btn" type="submit" class="btn btn-primary">
+                                        Upload Report
+                                      </button>
+                                    </div>
+                                  </section>
+                              </div>
+                          </div>
+          
+                      </div>
+          
+                  </div>
+          
+              
+          
+              <!-- /.container-fluid -->
+
           </div>
-          <br />
-          <div>
-            <label for="image" style="font-size: 18px" class="lead"
-              >Image</label
-            >
-            <input type="file" name="image" id="image" class="form-control" />
-          </div>
-          <br />
-          <button id="upload_btn" type="submit" class="btn btn-success">
-            Upload Report
-          </button>
-        </div>
+          <!-- End of Main Content -->
+
       </div>
-    </div>
-  </form>
-</div>
+      <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <script>
+// Get the report section and no-report section elements
+var reportSection = document.getElementById('reports');
+var noReportSection = document.getElementById('no-report');
+
+// Check if there are any reports
+var reportList = reportSection.getElementsByClassName('report-list');
+if (reportList.length > 0) {
+// There are reports, hide the no-report section
+noReportSection.style.display = 'none';
+} else {
+// No reports, hide the report section
+reportSection.style.display = 'none';
+}
+
+  </script>
+  
+</body>

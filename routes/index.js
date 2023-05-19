@@ -11,7 +11,9 @@ const {
 } = require('../config/auth');
 
 // Welcome Page
-router.get('/', (req, res) => res.render('Home'));
+router.get('/', (req, res) => res.render('Home', {
+    layout: 'layouts/loginLayout'
+}));
 
 //welcome page patient
 router.get('/patient/welcome', (req, res) => res.render('welcome'));

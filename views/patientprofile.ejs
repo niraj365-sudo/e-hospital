@@ -1,64 +1,64 @@
-<%- include('./partials/header.ejs'); %>
-<%- include('./partials/sideMenu.ejs'); %>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-<style>
+        <!-- Sidebar -->
+        <%- include('./partials/sidebar.ejs'); %>
+        <!-- End of Sidebar -->
 
-#profile-image {
-    border: 1px solid rgba(255, 255, 255, 0.247);
-    margin-left: 11030;
-    margin: 20px 20px;
-  }
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-  #details {
-    background: rgba(44, 42, 42, 0.137);
-    color: white;
-    border: 3px solid rgba(255, 255, 255, 0.13);
-    float: left;
-  }
+            <!-- Main Content -->
+            <div id="content">
 
-  .list-group-item {
-    background: rgba(109, 103, 103, 0.137);
-    color: white;
-    border: 3px solid rgba(255, 255, 255, 0.13);
-    font-size: 16px;
-  }
-  
-  </style>
-    
+                <!-- Topbar -->
+                <%- include('./partials/top_nav.ejs'); %>
+                <!-- End of Topbar -->
+                <%- include('./partials/messages.ejs'); %>
 
-<div class="scrollable" id ="data">
-    <h4 class="title"><i class="far fa-id-badge"></i> Profile</h4>
-    <br>
+                <!-- Begin Page Content -->
+              <div class="container-fluid">
+                  <div class="card-body">
+                    <div class="row">
+                      <div id="details" class="card col-md-5 ml-3 p-5 align-items-center">
+                        <div id="profile-image" class="col-md-4 d-flex"> 
+                          <img src="<%=user.imageUrl%>" class="mb-3 w-100"></img>
+                        </div>
+                        <a href="" class="text-muted mb-5" data-toggle="modal" data-target="#changePhotoModal"><i class="fa fa-camera"></i> Change Photo</a>
+                              <div class=" hvr-grow-shadow"><b style="font-size: 30px;"><%=user.name%></b></div>  
+                              
+                              <!-- <li class="list-group-item"><a href="" class="btn btn-success mb-2" data-toggle="modal" data-target="#updateProfileModal">Update Profile</a></li> -->
+                            
+                        </div>
+                        <div id="details" class=" col-md-5 ml-5 align-items-begin h5">
+                 <div class="mb-4 hvr-grow-shadow"><b>Patient ID :</b> <%=user.tokennumber%> </div>
+                <div class=" mb-4 hvr-grow-shadow"><b>Email :</b> <%=user.email%></div>
+                <div class=" mb-4 hvr-grow-shadow"><b>Gender :</b> <%=user.gender%> </div>
+                <div class=" mb-4 hvr-grow-shadow"><b>Age :</b> <%=user.age%> </div>
+                <div class=" mb-4 hvr-grow-shadow"><b>Address :</b> <%=user.address%> </div>
+                <div class=" mb-4 hvr-grow-shadow"><b>Joined :</b><%=user.date.toDateString()%> </div>
+                        </div>
+                        </div>
+                </div>
+              </div>
+                <!-- /.container-fluid -->
 
-<%- include('./partials/messages.ejs'); %>
+            </div>
+            <!-- End of Main Content -->
 
-<!--PROFILE-->
+        </div>
+        <!-- End of Content Wrapper -->
 
-<section class="actions mt-4">
-  
-      <div class="row">
-        <div id="details" class="card col-md-5 ml-5">
-        <ul class="list-group list-group-flush">
-          <div id="profile-image" class="col-md-4"> 
-            <img src="<%=user.imageUrl%>" class="card-img"></img>
-            <a href="" class="text-muted ml-2" data-toggle="modal" data-target="#changePhotoModal"><i class="fa fa-camera"></i> Change Photo</a>
-          </div>
-                <li class="list-group-item mb-2 hvr-grow-shadow" style=" background-color: transparent;"><b style="font-size: 30px;"><%=user.name%></b></li>
-                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Patient ID :</b> <%=user.tokennumber%> </li>
-                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Email :</b> <%=user.email%></li>
-                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Gender :</b> <%=user.gender%> </li>
-                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Age :</b> <%=user.age%> </li>
-                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Address :</b> <%=user.address%> </li>
-                <li class="list-group-item mb-2 hvr-grow-shadow"><b>Joined :</b><%=user.date.toDateString()%> </li>
-                <br>
-                <!-- <li class="list-group-item"><a href="" class="btn btn-success mb-2" data-toggle="modal" data-target="#updateProfileModal">Update Profile</a></li> -->
-              </ul> 
-          </div>
-          </div>
-</section>
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
 
-<!--Change Photo Modal-->
+    <!--Change Photo Modal-->
 <div class="modal fade" id="changePhotoModal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -71,8 +71,8 @@
       <div class="modal-body">
         <form method="POST" action="/patient/change_avatar" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="photo" class="form-control-label">Change Photo</label>
-            <input type="file"  name="image" class="form-control">
+            
+            <input type="file"  name="image" class="form-label">
           </div>
            <input type="submit" class="btn btn-sm btn-primary m-2" value="Submit">
         </form>
@@ -80,6 +80,3 @@
     </div>
   </div>
 </div>
-
-</div>
-

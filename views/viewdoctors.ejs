@@ -1,81 +1,76 @@
-<%- include('./partials/header.ejs'); %>
-<%- include('./partials/sideMenu.ejs'); %>
+<%- include('./partials/messages.ejs'); %>
+ <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <%- include('./partials/sidebar.ejs'); %>
+
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <%- include('./partials/top_nav.ejs'); %>
+
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
 
 
-<style>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Speciality</th>
+                                            <th>Details</th>
+                                            <th>Appointment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <% doctors.forEach(Doctor => { %>
+                                            <td>
+                                                <img id="senderavatar" src="<%= Doctor.imageUrl%>" class=" img-fluid" style="width: 10%;"></img>
+                                                <b><%=(Doctor.salutation)+" "+ (Doctor.name)%></b></td>
+                                              <td><span class="font-weight-bold"><%= Doctor.speciality %></span></td>
+                                              <td><a href="/patient/<%=Doctor.id%>" class=" btn btn-success"><p class="mb-0">View More</p>Details</a></td>
+                                              <td><a href="/makeAppointment/<%=Doctor.id%>" class="btn btn-primary"><p class="mb-0 ml-2 mr-2"> Appoint</p>Doctor</a></td>
+                                              <% }) %> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
- #searchbox{
-   margin-left: 66%;
- }
- #doctor_count{
-   margin-left: 100px;
- }
+                </div>
+                <!-- /.container-fluid -->
 
-</style>
+            </div>
+            <!-- End of Main Content -->
 
-<div class="scrollable" id ="data">
-    <h4 class="title"><i class="fas fa-list"></i> Doctors List</h4>
-    
-    <section id="chooseView" style="background-color: rgba(10, 192, 65, 0.144);">
-      <div class="col-md-4" style="margin-top: 0%;margin-left: 6%;">
-        <br>
-       <h6 class="lead" style="font-size:14px;font-weight: 400; color: white"><b>Switch to :</b></h6> 
-       <div class="row">
-        <div class="col-sm-12 btn-group">
-          <a id="btn_all" href="/patient/viewdoctors"  class="btn btn-success btn-lg btn-block hvr-grow-shadow">View all doctors</a>
-          <a id="btn_current" href="/patient/activeDoctors"  class="btn btn-success btn-sm btn-block hvr-grow-shadow">View Active Doctors</a>
-          <a id="btn_avail" href="/patient/doctorsAvailability"  class="btn btn-success btn-sm btn-block hvr-grow-shadow">Check Doctor's Availability</a>
+
         </div>
-      </div>
-      
-      
+        <!-- End of Content Wrapper -->
+
     </div>
-    </section>
-    
-    <section id="all_doctors">
-      <hr>
-      <h4 style="margin-left: 7%;margin-right: 13%; margin-top: 20px;color:white ;"><b>TABLE</b> : All doctors </h4> 
-    <p class="search">
-      <form action="" method="GET" id="searchbox" class="form-inline" >
-        <div class="form-group"> 
-          <input type="text" name="search" placeholder="Enter search query" class="form-control">
-          <br>
-          <input type="submit" value="Search" class="btn btn-dark">
-        </div>
-        <%- include('./partials/messages.ejs'); %>
-      </form>
-    </p>
-    <h5 id="doctor_count" class="btn btn-success"><b>Total doctors</b> : <%=doctorCount%></h5>
-    <br>
-    <br>
-    <table id="datatable" class="table table-bordered table-dark">
-    <thead class="thead-dark">
-      <tr>
-      <th style="width: 40%;" scope="col">Name</th>
-      <th style="width: 40%;" scope="col">Speciality</th>
-      <th style="width: 15%;" scope="col">Details</th>
-      <th scope="col">Appointment</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% doctors.forEach(Doctor => { %>
-    <tr>
-      <td>
-        <img id="senderavatar" src="<%= Doctor.imageUrl%>"></img>
-        <b><%=(Doctor.salutation)+" "+ (Doctor.name)%></b></td>
-      <td><b style="color: rgb(214, 216, 215);"><%= Doctor.speciality %></b></td>
-      <td><a href="/patient/<%=Doctor.id%>" class="aa btn btn-success">View More Details</a></td>
-      <td><a href="/makeAppointment/<%=Doctor.id%>" class="aa btn btn-primary">Appoint Doctor</a></td>
-    </tr>
-    </tbody>
-    <% }) %>
-    </table>
-    </section>
+    <!-- End of Page Wrapper -->
 
-    
-    <script>
-      $('#btn_all').hide()
-    </script>
-  </div>
-
-
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>

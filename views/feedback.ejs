@@ -1,31 +1,84 @@
-<%- include('./partials/header.ejs'); %>
-<%- include('./partials/sideMenu.ejs'); %>
 
-<style>
-    .feedback_card{
-        background: rgba(180, 175, 175, 0.137);
-    color: white;
-    border: 3px solid rgba(255, 255, 255, 0.13);
-    }
-    
-</style>
-<div class="scrollable" id ="data">
-    <h4 class="title"><i class="far fa-comments"></i> Send feedbacks</h4>
-    <br>
-    <br>
-    <form action="/feedbackform" method="POST" >
+<body>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+  
+        <!-- Sidebar -->
+        <%- include('./partials/sidebar.ejs'); %>
+        <!-- End of Sidebar -->
         
-        <div class="col-sm-8">
-            <div class="feedback_card card">
-              <div class="card-body">
-                <div class="form-group">
-                    <label for="feedback-form-message" class="lead">Message</label>
-                    <textarea type="text" placeholder="Enter your message and hit send" name="message"  class="feedback_card form-control" id="feedback-form-message" rows="6"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success">Send</button>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            
+            <!-- Main Content -->
+            <div id="content">
+                
+                <!-- Topbar -->
+                
+                <%- include('./partials/top_nav.ejs'); %>
+                <!-- End of Topbar -->
+  
                 <%- include('./partials/messages.ejs'); %>
-              </div>
+  
+                <!-- Begin Page Content -->
+                <div class="container">
+  
+                    <!-- Outer Row -->
+                    <div class="row justify-content-center">
+            
+                        <div class="col-xl-8 mt-5">
+            
+                            <div class="card o-hidden border-0 shadow-lg ">
+                                <div class="card-body p-3">
+                                    <!-- Nested Row within Card Body -->
+                                    <section id="no-report">
+                                        <form action="/feedbackform" method="POST" >
+        
+                                            <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <label for="feedback-form-message" class="lead">Message</label>
+                                                        <textarea type="text" placeholder="Enter your message and hit send" name="message"  class="feedback_card form-control" id="feedback-form-message" rows="6"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success">Send</button>
+                                                </div>
+                                        </form>
+                                    </section>
+                                </div>
+                            </div>
+            
+                        </div>
+            
+                    </div>
+            
+                
+            
+                <!-- /.container-fluid -->
+  
             </div>
+            <!-- End of Main Content -->
+  
         </div>
-</body>
-</html>
+        <!-- End of Content Wrapper -->
+  
+    </div>
+    <!-- End of Page Wrapper -->
+  
+    <script>
+  // Get the report section and no-report section elements
+  var reportSection = document.getElementById('reports');
+  var noReportSection = document.getElementById('no-report');
+  
+  // Check if there are any reports
+  var reportList = reportSection.getElementsByClassName('report-list');
+  if (reportList.length > 0) {
+  // There are reports, hide the no-report section
+  noReportSection.style.display = 'none';
+  } else {
+  // No reports, hide the report section
+  reportSection.style.display = 'none';
+  }
+  
+    </script>
+    
+  </body>
+  

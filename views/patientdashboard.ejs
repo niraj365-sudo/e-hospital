@@ -1,9 +1,186 @@
-<%- include('./partials/header.ejs'); %>
-<%- include('./partials/sideMenu.ejs'); %>
-      <div id ="data"><br>
-        <div id="datafield">
-          <h3 style="color: white;">Hello <%= user.name%></h3>
-        <p>You can see the contents here</p>
-        </div>
-      </div> 
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
     
+    <!-- Main Content -->
+    <div id="content">
+        
+        
+        <div class="card shadow mb-5">
+            <div class="card-header p-3 bg-primary d-flex ">
+                <img src="/img/title_logo.svg" alt="" width="5%">
+                <div class="m-0 font-weight-bold text-white gap-3 ml-2 h1 align-items-center">Dashboard</div>
+            </div>
+            <div class="card-body d-flex pl-5 g-4">
+                <div class="profile-image">
+                    <a href="/patientprofile?selectedItem=MY PROFILE">
+                        <img src="<%= user.imageUrl%>" class=" img-fluid w-50 h-100">
+                    </a>
+                </div>
+
+                <div class="profile-detail ">
+                   <span class="fs-2 display-4"><%= user.name%></span> <br>
+                   <button class="btn btn-primary mt-3"><a class="text-white" href="/patient/logout">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a></button>
+                </div>
+               
+            </div>
+
+        </div>
+
+<div class="row justify-content-center">
+
+    <!-- My Upload Report -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-bottom-primary shadow h-100 py-2">
+            <a href="/myuploads?selectedItem=MY UPLOADS" class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Report</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">My Upload</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-file-upload fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+
+    <!-- Hospital Upload Report -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-bottom-success shadow h-100 py-2">
+            <a href="/fromhospital?selectedItem=HOSPITAL UPLOADS " class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Report</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Hospital Upload</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-h-square fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+
+    <!-- Upload Report -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-bottom-info shadow h-100 py-2">
+            <a href="/uploadreport?selectedItem=UPLOAD REPORTS" class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Report</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Upload Report</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-h-square fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row justify-content-center">
+
+    <!-- View Doctors -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-bottom-danger shadow h-100 py-2">
+            <a href="/patient/viewdoctors?selectedItem=VIEW DOCTORS" class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            View</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Doctors</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user-md fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+
+    <!-- My Appointments -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-bottom-warning shadow h-100 py-2">
+            <a href="/myAppointments?selectedItem=MY APPOINTMENT" class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            My</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Appointments</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-user-clock fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+
+    <!-- Send Feedbacks -->
+    <div class="col-xl-3 col-md-6 mb-4">
+
+        <div class="card border-bottom-secondary shadow h-100 py-2">
+            <a href="/sendfeedbacks?selectedItem=SEND FEEDBACK" class="nav-link">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Send</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Feedbacks</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+            </div>
+            <!-- End of Main Content -->
+
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
